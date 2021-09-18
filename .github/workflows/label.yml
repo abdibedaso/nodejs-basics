@@ -1,0 +1,20 @@
+name: Labeler
+on:
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ main, new/feature ]
+
+jobs:
+
+  label:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write      
+
+    steps:
+    - uses: actions/labeler@v2
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        configuration-path: .github/workflows/labeler.yml
